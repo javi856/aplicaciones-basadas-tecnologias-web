@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 8 - Votaciones en gráfico</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      /* Ajusta el tamaño del contenedor del gráfico */
+      #chartContainer {
+        max-width: 500px;
+        margin: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container text-center mt-5">
+      <h1>Votaciones</h1>
+
+      <!-- Botones para votar -->
+      <div class="btn-group mb-3" role="group">
+        <button type="button" class="btn btn-outline-primary" onclick="vote(0)">Socialistas</button>
+        <button type="button" class="btn btn-outline-primary" onclick="vote(1)">Liberales</button>
+        <button type="button" class="btn btn-outline-primary" onclick="vote(2)">Animalistas</button>
+        <button type="button" class="btn btn-outline-primary" onclick="vote(3)">Centristas</button>
+        <button type="button" class="btn btn-outline-primary" onclick="vote(4)">Ecologistas</button>
+        <button type="button" class="btn btn-outline-danger" onclick="reset()">Reset</button>
+      </div>
+
+      <!-- Contenedor ajustado para el gráfico -->
+      <div id="chartContainer" class="mb-5">
+        <canvas id="voteChart"></canvas>
+      </div>
+
+      <!-- Botón de regreso al índice -->
+      <a href="../index.html" class="btn btn-secondary">Volver al Índice</a>
+    </div>
+
+    <!-- Script de Chart.js y lógica para votaciones -->
+    <script>
+      // Configuración inicial de los votos
+      const votes = [0, 0, 0, 0, 0];
+      const parties = ["Socialistas", "Liberales", "Animalistas", "Centristas", "Ecologistas"];
+
+      // Colores para cada partido
+      const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#9966FF", "#4BC0C0"];
+
+      // Creación del gráfico
+      const ctx = document.getElementById("voteChart").getContext("2d");
+      const voteChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: parties,
+          datasets: [
+            {
+              data: votes,
+              backgroundColor: colors,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.raw;
+                }
+              }
+            }
+          }
+        },
+      });
+
+      // Función para agregar un voto
+      function vote(index) {
+        votes[index]++;
+        voteChart.update();
+      }
+
+      // Función para resetear los votos
+      function reset() {
+        for (let i = 0; i < votes.length; i++) {
+          votes[i] = 0;
+        }
+        voteChart.update();
+      }
+    </script>
+  </body>
+</html>
+
+
+

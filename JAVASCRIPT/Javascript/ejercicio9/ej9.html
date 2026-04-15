@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 9 - Cat Walk</title>
+    <!-- Enlace a Bootstrap para estilos -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <!-- Imagen del gato caminando en la parte superior -->
+    <img
+      id="myCat"
+      style="position: absolute; left: 0px; top: 20px"
+      src="http://www.anniemation.com/clip_art/images/cat-walk.gif"
+      alt="Cat Walking"
+    />
+
+    <!-- Botón de regreso al índice en la parte inferior -->
+    <div class="text-center mt-5" style="position: fixed; bottom: 20px; width: 100%;">
+      <a href="../index.html" class="btn btn-secondary">Volver al Índice</a>
+    </div>
+
+    <script>
+      // Referencia al elemento img del gato
+      const cat = document.getElementById("myCat");
+      let position = 0;
+      let direction = 1; // 1 significa hacia la derecha, -1 significa hacia la izquierda
+
+      // Función para mover el gato
+      function catWalk() {
+        // Actualizar la posición del gato en función de la dirección
+        position += 10 * direction;
+        cat.style.left = position + "px";
+
+        // Cambiar la orientación del gato dependiendo de la dirección
+        cat.style.transform = direction === 1 ? "scaleX(1)" : "scaleX(-1)";
+
+        // Verificar si el gato llegó al borde derecho de la pantalla
+        if (position > window.innerWidth - cat.width) {
+          direction = -1; // Cambiar la dirección hacia la izquierda
+        }
+        // Verificar si el gato llegó al borde izquierdo de la pantalla
+        else if (position <= 0) {
+          direction = 1; // Cambiar la dirección hacia la derecha
+        }
+      }
+
+      // Llamar a la función catWalk cada 50 milisegundos
+      setInterval(catWalk, 50);
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+.additional {
+  color: rgb(8, 8, 8); /* Color del texto adicional */
+}
+
+.additional.hidden {
+  max-height: 100px; /* Altura inicial cuando el texto está oculto */
+  overflow: hidden;
+  transition: max-height 0.5s ease; /* Duración de la transición */
+  display: none; /* Oculta el contenido adicional inicialmente */
+}
+
+.additional.expanded {
+  max-height: 1000px; /* Altura suficiente para mostrar el texto completo */
+  overflow: visible;
+  display: inline;
+}
+
+

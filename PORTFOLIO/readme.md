@@ -1,4 +1,4 @@
-# Aplicaciones basadas en tecnologías web - Actividad 1
+# Aplicaciones basadas en tecnologías web
 
 Este proyecto corresponde a la **Actividad 1** de la asignatura **Aplicaciones basadas en tecnologías web**.
 
